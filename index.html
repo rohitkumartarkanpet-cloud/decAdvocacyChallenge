@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Patrick’s Auto Shop Productivity Report</title>
+<title>Patrick’s Auto Shops – Decision Brief</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -66,346 +31,419 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="index_files/libs/quarto-html/anchor.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap-514981598f886405bc67e039c5001fd5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="index_files/libs/bootstrap/bootstrap-dark-f67ddd586e489398aa58bf9f532948d6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="index_files/libs/bootstrap/bootstrap-514981598f886405bc67e039c5001fd5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <style>html{ scroll-behavior: smooth; }</style>
-<style>
-
-      .quarto-title-block .quarto-title-banner h1,
-      .quarto-title-block .quarto-title-banner h2,
-      .quarto-title-block .quarto-title-banner h3,
-      .quarto-title-block .quarto-title-banner h4,
-      .quarto-title-block .quarto-title-banner h5,
-      .quarto-title-block .quarto-title-banner h6
-      {
-        color: #0b1021;
-      }
-
-      .quarto-title-block .quarto-title-banner {
-        color: #0b1021;
-      }
-</style>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="custom_theme_v2.css">
 </head>
 
-<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="quarto-light">
 
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-right">
-      <div class="quarto-title-block"><div><h1 class="title">Patrick’s Auto Shop Productivity Report</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-            <p class="subtitle lead">Where Should You Spend Your Time?</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-right">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
   <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Report outline</h2>
    
   <ul class="collapse">
-  <li><a href="#the-bottom-line" id="toc-the-bottom-line" class="nav-link active" data-scroll-target="#the-bottom-line">The Bottom Line</a></li>
-  <li><a href="#what-the-data-shows" id="toc-what-the-data-shows" class="nav-link" data-scroll-target="#what-the-data-shows">What the Data Shows</a></li>
-  <li><a href="#distribution-comparison-violin-plot" id="toc-distribution-comparison-violin-plot" class="nav-link" data-scroll-target="#distribution-comparison-violin-plot">Distribution Comparison: Violin Plot</a></li>
-  <li><a href="#split-violin-plot-direct-comparison-by-shop" id="toc-split-violin-plot-direct-comparison-by-shop" class="nav-link" data-scroll-target="#split-violin-plot-direct-comparison-by-shop">Split Violin Plot: Direct Comparison by Shop</a></li>
-  <li><a href="#d-view-shop-performance-landscape" id="toc-d-view-shop-performance-landscape" class="nav-link" data-scroll-target="#d-view-shop-performance-landscape">3D View: Shop Performance Landscape</a></li>
-  <li><a href="#the-boss-boost-effect" id="toc-the-boss-boost-effect" class="nav-link" data-scroll-target="#the-boss-boost-effect">The “Boss Boost” Effect</a></li>
-  <li><a href="#how-confident-can-you-be" id="toc-how-confident-can-you-be" class="nav-link" data-scroll-target="#how-confident-can-you-be">How Confident Can You Be?</a></li>
-  <li><a href="#the-money-question" id="toc-the-money-question" class="nav-link" data-scroll-target="#the-money-question">The Money Question</a></li>
-  <li><a href="#your-action-plan" id="toc-your-action-plan" class="nav-link" data-scroll-target="#your-action-plan">Your Action Plan</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#snapshot-what-you-should-do" id="toc-snapshot-what-you-should-do" class="nav-link active" data-scroll-target="#snapshot-what-you-should-do"><span class="header-section-number">1</span> 1. Snapshot: What you should do</a></li>
+  <li><a href="#what-the-data-show" id="toc-what-the-data-show" class="nav-link" data-scroll-target="#what-the-data-show"><span class="header-section-number">2</span> 2. What the data show</a>
+  <ul class="collapse">
+  <li><a href="#all-250-data-points-in-one-view" id="toc-all-250-data-points-in-one-view" class="nav-link" data-scroll-target="#all-250-data-points-in-one-view"><span class="header-section-number">2.1</span> 2.1 All 250 data points in one view</a></li>
+  <li><a href="#distribution-comparison-by-shop-box-jitter-not-violins" id="toc-distribution-comparison-by-shop-box-jitter-not-violins" class="nav-link" data-scroll-target="#distribution-comparison-by-shop-box-jitter-not-violins"><span class="header-section-number">2.2</span> 2.2 Distribution comparison by shop (box + jitter, not violins)</a></li>
+  <li><a href="#d-view-shop-presence-cars" id="toc-d-view-shop-presence-cars" class="nav-link" data-scroll-target="#d-view-shop-presence-cars"><span class="header-section-number">2.3</span> 2.3 3D view: shop × presence × cars</a></li>
+  </ul></li>
+  <li><a href="#how-much-do-you-help-each-shop" id="toc-how-much-do-you-help-each-shop" class="nav-link" data-scroll-target="#how-much-do-you-help-each-shop"><span class="header-section-number">3</span> 3. How much do you help each shop?</a>
+  <ul class="collapse">
+  <li><a href="#boss-boost-table" id="toc-boss-boost-table" class="nav-link" data-scroll-target="#boss-boost-table"><span class="header-section-number">3.1</span> 3.1 “Boss boost” table</a></li>
+  <li><a href="#boss-boost-as-a-horizontal-bar-chart-with-cis" id="toc-boss-boost-as-a-horizontal-bar-chart-with-cis" class="nav-link" data-scroll-target="#boss-boost-as-a-horizontal-bar-chart-with-cis"><span class="header-section-number">3.2</span> 3.2 Boss boost as a horizontal bar chart (with CIs)</a></li>
+  </ul></li>
+  <li><a href="#how-confident-can-you-be" id="toc-how-confident-can-you-be" class="nav-link" data-scroll-target="#how-confident-can-you-be"><span class="header-section-number">4</span> 4. How confident can you be?</a></li>
+  <li><a href="#what-different-schedules-mean-in-money" id="toc-what-different-schedules-mean-in-money" class="nav-link" data-scroll-target="#what-different-schedules-mean-in-money"><span class="header-section-number">5</span> 5. What different schedules mean in money</a>
+  <ul class="collapse">
+  <li><a href="#month-projection" id="toc-month-projection" class="nav-link" data-scroll-target="#month-projection"><span class="header-section-number">5.1</span> 5.1 12‑month projection</a></li>
+  </ul></li>
+  <li><a href="#recommended-weekly-plan-pulling-it-together" id="toc-recommended-weekly-plan-pulling-it-together" class="nav-link" data-scroll-target="#recommended-weekly-plan-pulling-it-together"><span class="header-section-number">6</span> 6. Recommended weekly plan (pulling it together)</a></li>
+  <li><a href="#appendix-full-summary-table" id="toc-appendix-full-summary-table" class="nav-link" data-scroll-target="#appendix-full-summary-table"><span class="header-section-number">7</span> 7. Appendix — full summary table</a></li>
   </ul>
 </nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
-<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Patrick’s Auto Shops – Decision Brief</h1>
+<p class="subtitle lead">Using 250 days of data to design your weekly schedule</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
-<section id="the-bottom-line" class="level2">
-<h2 class="anchored" data-anchor-id="the-bottom-line">The Bottom Line</h2>
-<p>Patrick, here’s what your data tells us in plain language:</p>
+
+<section id="snapshot-what-you-should-do" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 1. Snapshot: What you should do</h1>
+<p>Patrick, here is the short version your data supports:</p>
 <ul>
-<li>Your presence <strong>does not help every shop equally</strong>.</li>
-<li>Some shops show a <strong>big, reliable jump</strong> in cars fixed when you’re there.</li>
-<li>Others run <strong>nearly as well without you</strong>.</li>
+<li>Your presence <strong>helps some shops a lot more than others</strong>.</li>
+<li>A small set of shops get a <strong>big, repeatable jump</strong> when you show up.</li>
+<li>Other shops tick along <strong>almost the same</strong> whether you are there or not.</li>
 </ul>
-<p><strong>Recommendation:</strong> Focus your week on the <strong>top two shops</strong> by <em>Boss Boost</em> (Present − Away). Your brother’s shop typically benefits <strong>least</strong> from your presence — visit occasionally, not routinely.</p>
+<p>A simple, data-backed plan is:</p>
+<ul>
+<li>Spend <strong>most of your week</strong> in the <strong>two shops where your presence adds the most cars per day</strong>.</li>
+<li>Visit the other shops (including your brother’s) <strong>only for specific reasons</strong>: training, big repairs, morale.</li>
+</ul>
+<p>The rest of this brief explains:</p>
+<ol type="1">
+<li>What the 250 days of data actually look like.</li>
+<li>How much you help each shop and how certain we are.</li>
+<li>What different schedules mean in <strong>dollars per month</strong>.</li>
+<li>A concrete weekly schedule you can follow.</li>
+</ol>
 <hr>
 </section>
-<section id="what-the-data-shows" class="level2">
-<h2 class="anchored" data-anchor-id="what-the-data-shows">What the Data Shows</h2>
-<p>We analyzed <strong>250 shop-days</strong> across 5 shops. Each point below is one day; horizontal tick marks show the mean for <em>Away</em> vs <em>Present</em>.</p>
-<div id="cell-fig-allpoints" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div id="fig-allpoints" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-allpoints-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-allpoints-output-1.png" width="890" height="449" class="figure-img">
+<section id="what-the-data-show" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 2. What the data show</h1>
+<p>Each row in <code>carsFixed.csv</code> is one <strong>shop-day</strong>:</p>
+<ul>
+<li>which shop it was,</li>
+<li>whether you were <strong>away</strong> or <strong>present</strong>, and</li>
+<li>how many cars were fixed.</li>
+</ul>
+<div class="cell" data-execution_count="2">
+<div id="tbl-head" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-head-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: First 10 days in the dataset
+</figcaption>
+<div aria-describedby="tbl-head-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">observation</th>
+<th data-quarto-table-cell-role="th">shopID</th>
+<th data-quarto-table-cell-role="th">boss</th>
+<th data-quarto-table-cell-role="th">carsFixed</th>
+<th data-quarto-table-cell-role="th">bossLabel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>8</td>
+<td>Away</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>22</td>
+<td>Away</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>32</td>
+<td>Away</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>64</td>
+<td>Present</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>53</td>
+<td>Away</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>21</td>
+<td>Present</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>7</td>
+<td>2</td>
+<td>0</td>
+<td>20</td>
+<td>Away</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>8</td>
+<td>3</td>
+<td>0</td>
+<td>42</td>
+<td>Away</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>9</td>
+<td>4</td>
+<td>0</td>
+<td>31</td>
+<td>Away</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>10</td>
+<td>5</td>
+<td>0</td>
+<td>55</td>
+<td>Away</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-allpoints-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: All 250 days — one dot per day, by shop and boss presence
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div id="tbl-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Summary statistics by shop and boss presence
+</figcaption>
+<div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">shopID</th>
+<th data-quarto-table-cell-role="th">bossLabel</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">q25</th>
+<th data-quarto-table-cell-role="th">q75</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>Away</td>
+<td>40</td>
+<td>11.05</td>
+<td>2.93</td>
+<td>9.0</td>
+<td>13.25</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>Present</td>
+<td>10</td>
+<td>18.00</td>
+<td>3.13</td>
+<td>17.0</td>
+<td>20.50</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2</td>
+<td>Away</td>
+<td>45</td>
+<td>22.13</td>
+<td>4.82</td>
+<td>19.0</td>
+<td>25.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2</td>
+<td>Present</td>
+<td>5</td>
+<td>32.20</td>
+<td>2.59</td>
+<td>30.0</td>
+<td>34.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>3</td>
+<td>Away</td>
+<td>35</td>
+<td>32.46</td>
+<td>5.59</td>
+<td>30.0</td>
+<td>36.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>3</td>
+<td>Present</td>
+<td>15</td>
+<td>35.40</td>
+<td>5.00</td>
+<td>32.5</td>
+<td>39.50</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>4</td>
+<td>Away</td>
+<td>45</td>
+<td>37.02</td>
+<td>5.61</td>
+<td>33.0</td>
+<td>41.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>4</td>
+<td>Present</td>
+<td>5</td>
+<td>49.80</td>
+<td>10.08</td>
+<td>42.0</td>
+<td>55.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>5</td>
+<td>Away</td>
+<td>35</td>
+<td>45.51</td>
+<td>7.24</td>
+<td>39.0</td>
+<td>50.50</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>5</td>
+<td>Present</td>
+<td>15</td>
+<td>53.73</td>
+<td>5.31</td>
+<td>49.5</td>
+<td>57.50</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<section id="all-250-data-points-in-one-view" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="all-250-data-points-in-one-view"><span class="header-section-number">2.1</span> 2.1 All 250 data points in one view</h2>
+<p>This figure shows <strong>every day</strong> in the data (all 250 points), colored by your presence and arranged by shop.</p>
+<div id="cell-fig-all-points" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-all-points" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-all-points-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-all-points-output-1.png" width="1087" height="388" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-all-points-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: All 250 days: one dot per day, colored by your presence
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="distribution-comparison-violin-plot" class="level2">
-<h2 class="anchored" data-anchor-id="distribution-comparison-violin-plot">Distribution Comparison: Violin Plot</h2>
-<p>Violin plots show the <strong>full distribution</strong> of productivity (not just the average).</p>
-<div id="cell-fig-violin" class="cell" data-execution_count="3">
+<section id="distribution-comparison-by-shop-box-jitter-not-violins" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="distribution-comparison-by-shop-box-jitter-not-violins"><span class="header-section-number">2.2</span> 2.2 Distribution comparison by shop (box + jitter, not violins)</h2>
+<p>Here we show the <strong>spread</strong> of productivity at each shop with and without you, using boxplots plus jittered points (no violin shapes).</p>
+<div id="cell-fig-box-strip" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
-<div id="fig-violin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-box-strip" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-violin-output-1.png" width="1089" height="388" class="figure-img">
+<div aria-describedby="fig-box-strip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-box-strip-output-1.png" width="1090" height="388" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Productivity distributions by shop &amp; presence
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-box-strip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Daily productivity by shop and presence: boxplots with individual days
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="split-violin-plot-direct-comparison-by-shop" class="level2">
-<h2 class="anchored" data-anchor-id="split-violin-plot-direct-comparison-by-shop">Split Violin Plot: Direct Comparison by Shop</h2>
-<p>Each shop’s two distributions plotted back-to-back for a <strong>direct</strong> comparison.</p>
-<div id="cell-fig-split-violin" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div id="fig-split-violin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-split-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-split-violin-output-1.png" width="890" height="409" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-split-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Split-violin per shop (Away vs Present)
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="d-view-shop-performance-landscape" class="level2">
-<h2 class="anchored" data-anchor-id="d-view-shop-performance-landscape">3D View: Shop Performance Landscape</h2>
-<p>A 3D perspective combining shop, presence, and cars fixed.</p>
-<div id="cell-fig-3d" class="cell" data-execution_count="5">
+<section id="d-view-shop-presence-cars" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="d-view-shop-presence-cars"><span class="header-section-number">2.3</span> 2.3 3D view: shop × presence × cars</h2>
+<p>To give you a different angle on the same data, this 3D plot summarizes the <strong>average cars per day</strong> for each shop and presence combination.</p>
+<div id="cell-fig-3d" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div id="fig-3d" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-3d-output-1.png" width="550" height="540" class="figure-img">
+<img src="index_files/figure-html/fig-3d-output-1.png" width="422" height="428" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: 3D: Shop × Presence × Cars
+Figure&nbsp;3: 3D view: average cars/day by shop and boss presence
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="the-boss-boost-effect" class="level2">
-<h2 class="anchored" data-anchor-id="the-boss-boost-effect">The “Boss Boost” Effect</h2>
-<p>How many <strong>extra cars</strong> are fixed when you’re present?</p>
-<div class="cell" data-execution_count="6">
-<div id="tbl-boost" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+</section>
+<section id="how-much-do-you-help-each-shop" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 3. How much do you help each shop?</h1>
+<section id="boss-boost-table" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="boss-boost-table"><span class="header-section-number">3.1</span> 3.1 “Boss boost” table</h2>
+<p>We define:</p>
+<blockquote class="blockquote">
+<p><strong>Boss boost = mean cars/day when you are Present − mean cars/day when you are Away.</strong></p>
+</blockquote>
+<div class="cell" data-execution_count="7">
+<div id="tbl-boost" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-boost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Boss Boost = mean(present) − mean(away)
+Table&nbsp;3: Shops ranked by extra cars/day when you are present
 </figcaption>
 <div aria-describedby="tbl-boost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
@@ -416,12 +454,12 @@ Table&nbsp;1: Boss Boost = mean(present) − mean(away)
 <th data-quarto-table-cell-role="th">shopID</th>
 <th data-quarto-table-cell-role="th">Mean (Away)</th>
 <th data-quarto-table-cell-role="th">Mean (Present)</th>
-<th data-quarto-table-cell-role="th">Boss Boost (Δ cars/day)</th>
+<th data-quarto-table-cell-role="th">Boss boost (Δ cars/day)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">0</th>
 <td>4</td>
 <td>37.02</td>
 <td>49.80</td>
@@ -435,21 +473,21 @@ Table&nbsp;1: Boss Boost = mean(present) − mean(away)
 <td>10.07</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
+<th data-quarto-table-cell-role="th">2</th>
 <td>5</td>
 <td>45.51</td>
 <td>53.73</td>
 <td>8.22</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">3</th>
 <td>1</td>
 <td>11.05</td>
 <td>18.00</td>
 <td>6.95</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">4</th>
 <td>3</td>
 <td>32.46</td>
 <td>35.40</td>
@@ -464,32 +502,36 @@ Table&nbsp;1: Boss Boost = mean(present) − mean(away)
 </figure>
 </div>
 </div>
-<div id="cell-fig-boost" class="cell" data-execution_count="7">
+</section>
+<section id="boss-boost-as-a-horizontal-bar-chart-with-cis" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="boss-boost-as-a-horizontal-bar-chart-with-cis"><span class="header-section-number">3.2</span> 3.2 Boss boost as a horizontal bar chart (with CIs)</h2>
+<p>This figure shows where your time <strong>creates the most extra cars per day</strong>, with uncertainty bars when we can estimate them.</p>
+<div id="cell-fig-boost-bars" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
-<div id="fig-boost" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-boost-bars" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-boost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-boost-output-1.png" width="710" height="380" class="figure-img">
+<div aria-describedby="fig-boost-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-boost-bars-output-1.png" width="710" height="408" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Extra cars per day when you’re present (by shop)
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boost-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Extra cars/day when you are present, with uncertainty bars
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="how-confident-can-you-be" class="level2">
-<h2 class="anchored" data-anchor-id="how-confident-can-you-be">How Confident Can You Be?</h2>
-<div class="cell" data-execution_count="8">
-<div id="tbl-ci" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="8">
+</section>
+<section id="how-confident-can-you-be" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 4. How confident can you be?</h1>
+<div class="cell" data-execution_count="9">
+<div id="tbl-ci" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="9">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Bootstrap CIs for shop-level Boss Boost
+Table&nbsp;4: Bootstrap confidence intervals for boss boost by shop
 </figcaption>
 <div aria-describedby="tbl-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -507,37 +549,37 @@ Table&nbsp;2: Bootstrap CIs for shop-level Boss Boost
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>1</td>
-<td>6.99</td>
-<td>4.98</td>
-<td>8.95</td>
+<td>6.91</td>
+<td>4.85</td>
+<td>9.02</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>2</td>
-<td>10.03</td>
-<td>7.64</td>
-<td>12.44</td>
+<td>10.08</td>
+<td>7.58</td>
+<td>12.47</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>3</td>
-<td>2.98</td>
-<td>-0.05</td>
-<td>5.91</td>
+<td>2.93</td>
+<td>-0.10</td>
+<td>5.95</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>4</td>
-<td>12.78</td>
-<td>4.73</td>
-<td>20.78</td>
+<td>12.73</td>
+<td>5.13</td>
+<td>21.31</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>5</td>
 <td>8.15</td>
-<td>4.61</td>
-<td>11.60</td>
+<td>4.58</td>
+<td>11.62</td>
 </tr>
 </tbody>
 </table>
@@ -548,110 +590,216 @@ Table&nbsp;2: Bootstrap CIs for shop-level Boss Boost
 </figure>
 </div>
 </div>
-<div id="cell-fig-ci" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display">
-<div id="fig-ci" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-ci-output-1.png" width="710" height="380" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Effect ± confidence interval by shop
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="the-money-question" class="level2">
-<h2 class="anchored" data-anchor-id="the-money-question">The Money Question</h2>
-<p>Assume <strong>$200 profit per car</strong>. Compare monthly strategies (22 working days):</p>
-<div id="cell-fig-money-month" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div id="fig-money-month" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-money-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-money-month-output-1.png" width="710" height="380" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-money-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Extra profit per month by strategy (illustrative)
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<section id="long-term-profit-projection-12-months" class="level3">
-<h3 class="anchored" data-anchor-id="long-term-profit-projection-12-months">Long-Term Profit Projection (12 months)</h3>
-<div id="cell-fig-money-year" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display">
-<div id="fig-money-year" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-money-year-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-money-year-output-1.png" width="710" height="380" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-money-year-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Cumulative extra profit over 12 months
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-</section>
-<section id="your-action-plan" class="level2">
-<h2 class="anchored" data-anchor-id="your-action-plan">Your Action Plan</h2>
-<p><strong>Priority schedule (start next week):</strong></p>
+<p>In plain language:</p>
 <ul>
-<li><strong>2–3 days</strong> in the <strong>highest-boost</strong> shop<br>
-</li>
-<li><strong>2–3 days</strong> in the <strong>second-highest-boost</strong> shop<br>
-</li>
-<li><strong>Occasional</strong> check-ins elsewhere (including your brother’s shop)</li>
+<li>If a shop’s entire interval is <strong>above 0</strong>, you almost certainly help there.</li>
+<li>If an interval overlaps 0, the signal is weaker; that shop is lower priority until more data accumulate.</li>
 </ul>
-<p><strong>What could go wrong &amp; mitigations:</strong></p>
+</section>
+<section id="what-different-schedules-mean-in-money" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 5. What different schedules mean in money</h1>
+<p>Assume:</p>
+<ul>
+<li><strong>$200 profit per car</strong>, and</li>
+<li><strong>22 working days per month</strong>.</li>
+</ul>
+<p>We compare three simple schedules:</p>
 <ol type="1">
-<li><strong>Small samples</strong> in some shops → keep logging data; re-check quarterly.<br>
+<li><strong>Even split</strong> – equal time at all shops.<br>
 </li>
-<li><strong>Seasonality</strong> → include month/day-of-week in future models if patterns shift.<br>
+<li><strong>Focus top-2</strong> – all your time at the two highest-boost shops.<br>
 </li>
-<li><strong>Staff changes</strong> → if a lower-boost shop hires new techs, reassess.</li>
+<li><strong>Brother-only</strong> – all your time at your brother’s shop (shop 3 if it exists; otherwise the first shop).</li>
 </ol>
-<hr>
+<div id="cell-fig-money" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div id="fig-money" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-money-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-money-output-1.png" width="690" height="388" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-money-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Extra profit per month vs a ‘never visit’ baseline
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="month-projection" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="month-projection"><span class="header-section-number">5.1</span> 5.1 12‑month projection</h2>
+<p>Here we project the same three strategies over 12 months, assuming the pattern continues.</p>
+<div id="cell-fig-projection" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div id="fig-projection" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-projection-output-1.png" width="690" height="388" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Cumulative extra profit over 12 months for each strategy
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+</section>
+<section id="recommended-weekly-plan-pulling-it-together" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 6. Recommended weekly plan (pulling it together)</h1>
+<p>Based on the boss-boost rankings and CIs:</p>
 <ul>
-<li>Your presence matters — but <strong>not equally everywhere</strong>.<br>
-</li>
-<li>Focusing on the <strong>top two shops</strong> adds the most cars (and dollars).<br>
-</li>
-<li>The <strong>money charts</strong> show large gains from a smarter weekly schedule.<br>
-</li>
-<li><strong>Re-run quarterly</strong> and adjust as the data evolve.</li>
+<li>Spend <strong>Monday–Wednesday</strong> at the <strong>highest-boost shop</strong>.</li>
+<li>Spend <strong>Thursday–Friday</strong> at the <strong>second-highest-boost shop</strong>.</li>
+<li>Visit other shops, including your brother’s, <strong>only when there is a clear reason</strong> (new staff, big jobs, problems).</li>
 </ul>
-<!-- -->
+<p>Re-run this brief every few months:</p>
+<ul>
+<li>If the ranking of shops changes, rotate your schedule.</li>
+<li>Keep logging data so the recommendations stay current.</li>
+</ul>
+</section>
+<section id="appendix-full-summary-table" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 7. Appendix — full summary table</h1>
+<div class="cell" data-execution_count="12">
+<div id="tbl-summary-full" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="12">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Summary statistics used across the report
+</figcaption>
+<div aria-describedby="tbl-summary-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
 
+
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">shopID</th>
+<th data-quarto-table-cell-role="th">bossLabel</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">q25</th>
+<th data-quarto-table-cell-role="th">q75</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>Away</td>
+<td>40</td>
+<td>11.05</td>
+<td>2.93</td>
+<td>9.0</td>
+<td>13.25</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>Present</td>
+<td>10</td>
+<td>18.00</td>
+<td>3.13</td>
+<td>17.0</td>
+<td>20.50</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2</td>
+<td>Away</td>
+<td>45</td>
+<td>22.13</td>
+<td>4.82</td>
+<td>19.0</td>
+<td>25.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2</td>
+<td>Present</td>
+<td>5</td>
+<td>32.20</td>
+<td>2.59</td>
+<td>30.0</td>
+<td>34.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>3</td>
+<td>Away</td>
+<td>35</td>
+<td>32.46</td>
+<td>5.59</td>
+<td>30.0</td>
+<td>36.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>3</td>
+<td>Present</td>
+<td>15</td>
+<td>35.40</td>
+<td>5.00</td>
+<td>32.5</td>
+<td>39.50</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>4</td>
+<td>Away</td>
+<td>45</td>
+<td>37.02</td>
+<td>5.61</td>
+<td>33.0</td>
+<td>41.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>4</td>
+<td>Present</td>
+<td>5</td>
+<td>49.80</td>
+<td>10.08</td>
+<td>42.0</td>
+<td>55.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>5</td>
+<td>Away</td>
+<td>35</td>
+<td>45.51</td>
+<td>7.24</td>
+<td>39.0</td>
+<td>50.50</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>5</td>
+<td>Present</td>
+<td>15</td>
+<td>53.73</td>
+<td>5.31</td>
+<td>49.5</td>
+<td>57.50</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 
 </main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -720,57 +868,6 @@ Figure&nbsp;8: Cumulative extra profit over 12 months
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1100,410 +1197,7 @@ Figure&nbsp;8: Cumulative extra profit over 12 months
       }
     }
   });
-  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Patrick’s Auto Shop Productivity Report"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Where Should You Spend Your Time?"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    theme:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">      light: [lux]</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">      dark: [vapor]</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: "On this page"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: false</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    smooth-scroll: true</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    anchor-sections: true</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    title-block-banner: true</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    title-block-banner-color: "#0b1021"</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    css: custom_theme_v2.css</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Bottom Line</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Patrick, here’s what your data tells us in plain language:</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your presence **does not help every shop equally**.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Some shops show a **big, reliable jump** in cars fixed when you’re there.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Others run **nearly as well without you**.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>**Recommendation:** Focus your week on the **top two shops** by _Boss Boost_ (Present − Away). Your brother’s shop typically benefits **least** from your presence — visit occasionally, not routinely.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> MaxNLocator</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D  <span class="co"># noqa: F401 (imported for 3D)</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">"default"</span>)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Load &amp; basic checks ----</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"carsFixed.csv"</span>).copy()</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"shopID"</span>] <span class="op">=</span> df[<span class="st">"shopID"</span>].astype(<span class="bu">str</span>)</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>exp_cols <span class="op">=</span> {<span class="st">"shopID"</span>, <span class="st">"boss"</span>, <span class="st">"carsFixed"</span>}</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>miss <span class="op">=</span> exp_cols.difference(df.columns)</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> miss:</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Missing expected columns: </span><span class="sc">{</span>miss<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Map boss indicator to readable labels</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>uniq <span class="op">=</span> <span class="bu">sorted</span>(df[<span class="st">"boss"</span>].unique())</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">set</span>(uniq) <span class="op">==</span> {<span class="dv">0</span>,<span class="dv">1</span>}:</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    boss_map <span class="op">=</span> {<span class="dv">0</span>:<span class="st">"Away"</span>, <span class="dv">1</span>:<span class="st">"Present"</span>}</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    boss_map <span class="op">=</span> {v:<span class="bu">str</span>(v) <span class="cf">for</span> v <span class="kw">in</span> uniq}</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"bossLabel"</span>] <span class="op">=</span> df[<span class="st">"boss"</span>].<span class="bu">map</span>(boss_map)</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary table and means</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> (df.groupby([<span class="st">"shopID"</span>,<span class="st">"bossLabel"</span>])[<span class="st">"carsFixed"</span>]</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>             .agg(count<span class="op">=</span><span class="st">"count"</span>, mean<span class="op">=</span><span class="st">"mean"</span>, std<span class="op">=</span><span class="st">"std"</span>, <span class="bu">min</span><span class="op">=</span><span class="st">"min"</span>, <span class="bu">max</span><span class="op">=</span><span class="st">"max"</span>)</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>             .reset_index())</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> df.groupby([<span class="st">"shopID"</span>,<span class="st">"bossLabel"</span>])[<span class="st">"carsFixed"</span>].mean().unstack()</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"Present"</span> <span class="kw">in</span> means.columns <span class="kw">and</span> <span class="st">"Away"</span> <span class="kw">in</span> means.columns:</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    means[<span class="st">"boss_boost"</span>] <span class="op">=</span> means[<span class="st">"Present"</span>] <span class="op">-</span> means[<span class="st">"Away"</span>]</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    means[<span class="st">"boss_boost"</span>] <span class="op">=</span> np.nan</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>boost_tbl <span class="op">=</span> means.reset_index().sort_values(<span class="st">"boss_boost"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap CIs per shop</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _boot_shop(sub, n<span class="op">=</span><span class="dv">2000</span>):</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ((<span class="st">"Present"</span> <span class="kw">in</span> sub[<span class="st">"bossLabel"</span>].values) <span class="kw">and</span> (<span class="st">"Away"</span> <span class="kw">in</span> sub[<span class="st">"bossLabel"</span>].values)):</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> sub.loc[sub[<span class="st">"bossLabel"</span>]<span class="op">==</span><span class="st">"Away"</span>,<span class="st">"carsFixed"</span>].to_numpy()</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> sub.loc[sub[<span class="st">"bossLabel"</span>]<span class="op">==</span><span class="st">"Present"</span>,<span class="st">"carsFixed"</span>].to_numpy()</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(a)<span class="op">==</span><span class="dv">0</span> <span class="kw">or</span> <span class="bu">len</span>(p)<span class="op">==</span><span class="dv">0</span>: </span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>    outs <span class="op">=</span> []</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        outs.append(np.random.choice(p, size<span class="op">=</span>p.size, replace<span class="op">=</span><span class="va">True</span>).mean()</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-</span> np.random.choice(a, size<span class="op">=</span>a.size, replace<span class="op">=</span><span class="va">True</span>).mean())</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>    outs <span class="op">=</span> np.array(outs)</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> outs.mean(), np.quantile(outs,<span class="fl">0.025</span>), np.quantile(outs,<span class="fl">0.975</span>)</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> shop, sub <span class="kw">in</span> df.groupby(<span class="st">"shopID"</span>):</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> _boot_shop(sub)</span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>        rows.append({<span class="st">"shopID"</span>: <span class="bu">str</span>(shop), <span class="st">"effect_mean"</span>: z[<span class="dv">0</span>], <span class="st">"ci_lower"</span>: z[<span class="dv">1</span>], <span class="st">"ci_upper"</span>: z[<span class="dv">2</span>]})</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>ci <span class="op">=</span> pd.DataFrame(rows) <span class="cf">if</span> rows <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the Data Shows</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>We analyzed **250 shop-days** across 5 shops. Each point below is one day; horizontal tick marks show the mean for _Away_ vs _Present_.</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-allpoints</span></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "All 250 days — one dot per day, by shop and boss presence"</span></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>,<span class="fl">4.6</span>))</span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>shops <span class="op">=</span> <span class="bu">sorted</span>(df[<span class="st">"shopID"</span>].unique())</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>xpos <span class="op">=</span> {(shop,<span class="st">"Away"</span>): i<span class="op">-</span><span class="fl">0.13</span> <span class="cf">for</span> i,shop <span class="kw">in</span> <span class="bu">enumerate</span>(shops)}</span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>xpos.update({(shop,<span class="st">"Present"</span>): i<span class="op">+</span><span class="fl">0.13</span> <span class="cf">for</span> i,shop <span class="kw">in</span> <span class="bu">enumerate</span>(shops)})</span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (shop, status), sub <span class="kw">in</span> df.groupby([<span class="st">"shopID"</span>,<span class="st">"bossLabel"</span>]):</span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> xpos[(shop,status)] <span class="op">+</span> <span class="fl">0.045</span><span class="op">*</span>(np.random.rand(<span class="bu">len</span>(sub)) <span class="op">-</span> <span class="fl">0.5</span>)</span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>    ax.scatter(x, sub[<span class="st">"carsFixed"</span>], s<span class="op">=</span><span class="dv">22</span>, alpha<span class="op">=</span><span class="fl">0.55</span>)</span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean ticks</span></span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"Present"</span> <span class="kw">in</span> means.columns <span class="kw">and</span> <span class="st">"Away"</span> <span class="kw">in</span> means.columns:</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, shop <span class="kw">in</span> <span class="bu">enumerate</span>(shops):</span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> means.loc[shop]</span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> np.isnan(row.get(<span class="st">"Away"</span>, np.nan)):</span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>            ax.hlines(row[<span class="st">"Away"</span>], i<span class="op">-</span><span class="fl">0.33</span>, i<span class="op">-</span><span class="fl">0.05</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> np.isnan(row.get(<span class="st">"Present"</span>, np.nan)):</span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>            ax.hlines(row[<span class="st">"Present"</span>], i<span class="op">+</span><span class="fl">0.05</span>, i<span class="op">+</span><span class="fl">0.33</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(shops)))</span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Shop </span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> s <span class="kw">in</span> shops])</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Cars fixed per day"</span>)</span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distribution Comparison: Violin Plot</span></span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>Violin plots show the **full distribution** of productivity (not just the average).</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-violin</span></span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Productivity distributions by shop &amp; presence"</span></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(shops), figsize<span class="op">=</span>(<span class="dv">11</span>,<span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, shop <span class="kw">in</span> <span class="bu">enumerate</span>(shops):</span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> df[df[<span class="st">"shopID"</span>]<span class="op">==</span>shop]</span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>    data_away <span class="op">=</span> sub.loc[sub[<span class="st">"bossLabel"</span>]<span class="op">==</span><span class="st">"Away"</span>,<span class="st">"carsFixed"</span>].to_numpy()</span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>    data_pres <span class="op">=</span> sub.loc[sub[<span class="st">"bossLabel"</span>]<span class="op">==</span><span class="st">"Present"</span>,<span class="st">"carsFixed"</span>].to_numpy()</span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>    parts <span class="op">=</span> axes[i].violinplot([data_away, data_pres], showmeans<span class="op">=</span><span class="va">True</span>, showmedians<span class="op">=</span><span class="va">False</span>, showextrema<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(<span class="ss">f"Shop </span><span class="sc">{</span>shop<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>    axes[i].set_xticks([<span class="dv">1</span>,<span class="dv">2</span>])<span class="op">;</span> axes[i].set_xticklabels([<span class="st">"Away"</span>,<span class="st">"Present"</span>])</span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>    axes[i].yaxis.set_major_locator(MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>    axes[i].grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Cars fixed per day"</span>)</span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Split Violin Plot: Direct Comparison by Shop</span></span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>Each shop’s two distributions plotted back-to-back for a **direct** comparison.</span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-split-violin</span></span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Split-violin per shop (Away vs Present)"</span></span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> half_violin(ax, data, pos, side<span class="op">=</span><span class="st">"left"</span>, width<span class="op">=</span><span class="fl">0.8</span>):</span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>    vp <span class="op">=</span> ax.violinplot([data], positions<span class="op">=</span>[pos], widths<span class="op">=</span>width, showmeans<span class="op">=</span><span class="va">False</span>, showmedians<span class="op">=</span><span class="va">False</span>, showextrema<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> vp[<span class="st">'bodies'</span>]:</span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> np.mean(b.get_paths()[<span class="dv">0</span>].vertices[:,<span class="dv">0</span>])</span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>        verts <span class="op">=</span> b.get_paths()[<span class="dv">0</span>].vertices</span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> side<span class="op">==</span><span class="st">"left"</span>:</span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>            verts[:,<span class="dv">0</span>] <span class="op">=</span> np.minimum(verts[:,<span class="dv">0</span>], m)</span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>            verts[:,<span class="dv">0</span>] <span class="op">=</span> np.maximum(verts[:,<span class="dv">0</span>], m)</span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>        b.set_alpha(<span class="fl">0.6</span>)</span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>,<span class="fl">4.2</span>))</span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>positions <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(shops)<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, shop <span class="kw">in</span> <span class="bu">enumerate</span>(shops, start<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> df[df[<span class="st">"shopID"</span>]<span class="op">==</span>shop]</span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> sub.loc[sub[<span class="st">"bossLabel"</span>]<span class="op">==</span><span class="st">"Away"</span>,<span class="st">"carsFixed"</span>].to_numpy()</span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> sub.loc[sub[<span class="st">"bossLabel"</span>]<span class="op">==</span><span class="st">"Present"</span>,<span class="st">"carsFixed"</span>].to_numpy()</span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(a)<span class="op">&gt;</span><span class="dv">0</span>:</span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>        half_violin(ax, a, i, side<span class="op">=</span><span class="st">"left"</span>, width<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(p)<span class="op">&gt;</span><span class="dv">0</span>:</span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>        half_violin(ax, p, i, side<span class="op">=</span><span class="st">"right"</span>, width<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Means (diamonds)</span></span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Away"</span> <span class="kw">in</span> means.columns:</span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>        ma <span class="op">=</span> means.loc[shop].get(<span class="st">"Away"</span>, np.nan)</span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> np.isnan(ma):</span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>            ax.scatter(i<span class="op">-</span><span class="fl">0.05</span>, ma, marker<span class="op">=</span><span class="st">"D"</span>)</span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Present"</span> <span class="kw">in</span> means.columns:</span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>        mp <span class="op">=</span> means.loc[shop].get(<span class="st">"Present"</span>, np.nan)</span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> np.isnan(mp):</span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>            ax.scatter(i<span class="op">+</span><span class="fl">0.05</span>, mp, marker<span class="op">=</span><span class="st">"D"</span>)</span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(positions)<span class="op">;</span> ax.set_xticklabels([<span class="ss">f"Shop </span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> s <span class="kw">in</span> shops])</span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Cars fixed per day"</span>)</span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3D View: Shop Performance Landscape</span></span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>A 3D perspective combining shop, presence, and cars fixed.</span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-3d</span></span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "3D: Shop × Presence × Cars"</span></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D  <span class="co"># noqa</span></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="fl">8.5</span>,<span class="fl">5.5</span>))</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>status_to_x <span class="op">=</span> {<span class="st">"Away"</span>:<span class="dv">0</span>, <span class="st">"Present"</span>:<span class="dv">1</span>}</span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>xs, ys, zs <span class="op">=</span> [], [], []</span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, r <span class="kw">in</span> df.iterrows():</span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>    xs.append(status_to_x.get(r[<span class="st">"bossLabel"</span>], <span class="dv">0</span>))</span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>    ys.append(<span class="bu">int</span>(r[<span class="st">"shopID"</span>]))</span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>    zs.append(r[<span class="st">"carsFixed"</span>])</span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>ax.scatter(xs, ys, zs, s<span class="op">=</span><span class="dv">10</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Bars at means</span></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> shop <span class="kw">in</span> shops:</span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="bu">int</span>(shop)</span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Away"</span> <span class="kw">in</span> means.columns <span class="kw">and</span> <span class="kw">not</span> np.isnan(means.loc[shop].get(<span class="st">"Away"</span>, np.nan)):</span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>        ax.bar3d(<span class="dv">0</span>, y<span class="op">-</span><span class="fl">0.2</span>, <span class="dv">0</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, means.loc[shop][<span class="st">"Away"</span>], alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Present"</span> <span class="kw">in</span> means.columns <span class="kw">and</span> <span class="kw">not</span> np.isnan(means.loc[shop].get(<span class="st">"Present"</span>, np.nan)):</span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>        ax.bar3d(<span class="dv">1</span>, y<span class="op">-</span><span class="fl">0.2</span>, <span class="dv">0</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, means.loc[shop][<span class="st">"Present"</span>], alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Presence (0=Away, 1=Present)"</span>)</span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Shop"</span>)</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">"Cars fixed"</span>)</span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="fu">## The “Boss Boost” Effect</span></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>How many **extra cars** are fixed when you’re present?</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-boost</span></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Boss Boost = mean(present) − mean(away)"</span></span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>view <span class="op">=</span> boost_tbl[[<span class="st">"shopID"</span>]].copy()</span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>view[<span class="st">"Mean (Away)"</span>] <span class="op">=</span> means.get(<span class="st">"Away"</span>, np.nan).reindex(boost_tbl[<span class="st">"shopID"</span>]).values</span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>view[<span class="st">"Mean (Present)"</span>] <span class="op">=</span> means.get(<span class="st">"Present"</span>, np.nan).reindex(boost_tbl[<span class="st">"shopID"</span>]).values</span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>view[<span class="st">"Boss Boost (Δ cars/day)"</span>] <span class="op">=</span> boost_tbl[<span class="st">"boss_boost"</span>].values</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>view.<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-boost</span></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Extra cars per day when you’re present (by shop)"</span></span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>,<span class="fl">3.9</span>))</span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>bb <span class="op">=</span> boost_tbl.fillna(<span class="dv">0</span>)</span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>ax.bar([<span class="ss">f"Shop </span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> s <span class="kw">in</span> bb[<span class="st">"shopID"</span>]], bb[<span class="st">"boss_boost"</span>], alpha<span class="op">=</span><span class="fl">0.9</span>)</span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Δ cars/day"</span>)</span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(bb[<span class="st">"boss_boost"</span>]):</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>    ax.text(i, v, <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.1f}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span> <span class="cf">if</span> v<span class="op">&gt;=</span><span class="dv">0</span> <span class="cf">else</span> <span class="st">"top"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="fu">## How Confident Can You Be?</span></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ci</span></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Bootstrap CIs for shop-level Boss Boost"</span></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>ci.<span class="bu">round</span>(<span class="dv">2</span>) <span class="cf">if</span> ci <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> pd.DataFrame({<span class="st">"Note"</span>: [<span class="st">"Insufficient variation to estimate CIs."</span>]})</span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ci</span></span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Effect ± confidence interval by shop"</span></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ci <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> [s <span class="cf">for</span> s <span class="kw">in</span> boost_tbl[<span class="st">"shopID"</span>] <span class="cf">if</span> s <span class="kw">in</span> <span class="bu">set</span>(ci[<span class="st">"shopID"</span>])]</span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>    dat <span class="op">=</span> ci.set_index(<span class="st">"shopID"</span>).loc[order].reset_index()</span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>,<span class="fl">3.9</span>))</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.arange(<span class="bu">len</span>(dat))</span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> dat[<span class="st">"effect_mean"</span>].to_numpy()</span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>    lo <span class="op">=</span> dat[<span class="st">"ci_lower"</span>].to_numpy()</span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>    hi <span class="op">=</span> dat[<span class="st">"ci_upper"</span>].to_numpy()</span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>    ax.errorbar(x, y, yerr<span class="op">=</span>[y<span class="op">-</span>lo, hi<span class="op">-</span>y], fmt<span class="op">=</span><span class="st">"o"</span>, capsize<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>    ax.axhline(<span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(x)<span class="op">;</span> ax.set_xticklabels([<span class="ss">f"Shop </span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> s <span class="kw">in</span> dat[<span class="st">"shopID"</span>]])</span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Boss Boost (cars/day)"</span>)</span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>    ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">"Not enough Present/Away variation for CIs."</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Money Question</span></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>Assume **$200 profit per car**. Compare monthly strategies (22 working days):</span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-money-month</span></span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Extra profit per month by strategy (illustrative)"</span></span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>profit_per_car <span class="op">=</span> <span class="fl">200.0</span></span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>workdays <span class="op">=</span> <span class="dv">22</span></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>shops <span class="op">=</span> <span class="bu">list</span>(means.index)</span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expected_cars(plan):</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>    tot <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> shop <span class="kw">in</span> shops:</span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>        days_present <span class="op">=</span> plan.get(shop, <span class="fl">0.0</span>)</span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>        days_away <span class="op">=</span> workdays <span class="op">-</span> days_present</span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> means.loc[shop]</span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>        mA <span class="op">=</span> row.get(<span class="st">"Away"</span>, row.mean())</span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>        mP <span class="op">=</span> row.get(<span class="st">"Present"</span>, mA)</span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>        tot <span class="op">+=</span> days_present<span class="op">*</span>mP <span class="op">+</span> days_away<span class="op">*</span>mA</span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tot</span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="co"># Strategies: Even, Optimal (top 2), Brother-only, Never</span></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>even <span class="op">=</span> {s: workdays<span class="op">/</span><span class="bu">len</span>(shops) <span class="cf">for</span> s <span class="kw">in</span> shops}</span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>sorted_boost <span class="op">=</span> boost_tbl.sort_values(<span class="st">"boss_boost"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>top2 <span class="op">=</span> <span class="bu">list</span>(sorted_boost[<span class="st">"shopID"</span>][:<span class="dv">2</span>]) <span class="cf">if</span> <span class="bu">len</span>(sorted_boost)<span class="op">&gt;=</span><span class="dv">2</span> <span class="cf">else</span> <span class="bu">list</span>(sorted_boost[<span class="st">"shopID"</span>])</span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>optimal <span class="op">=</span> {s: <span class="fl">0.0</span> <span class="cf">for</span> s <span class="kw">in</span> shops}</span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(top2)<span class="op">&gt;</span><span class="dv">0</span>:</span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>    each <span class="op">=</span> workdays<span class="op">/</span><span class="bu">len</span>(top2)</span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> top2: optimal[s] <span class="op">=</span> each</span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>fav <span class="op">=</span> <span class="st">"3"</span> <span class="cf">if</span> <span class="st">"3"</span> <span class="kw">in</span> shops <span class="cf">else</span> shops[<span class="dv">0</span>]</span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>brother <span class="op">=</span> {s:<span class="fl">0.0</span> <span class="cf">for</span> s <span class="kw">in</span> shops}<span class="op">;</span> brother[fav] <span class="op">=</span> workdays</span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>never <span class="op">=</span> {s:<span class="fl">0.0</span> <span class="cf">for</span> s <span class="kw">in</span> shops}</span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> expected_cars(never)</span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>extra <span class="op">=</span> {</span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Optimal (Top 2)"</span>: expected_cars(optimal)<span class="op">-</span>base,</span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Even Split"</span>: expected_cars(even)<span class="op">-</span>base,</span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Brother Only"</span>: expected_cars(brother)<span class="op">-</span>base,</span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>money <span class="op">=</span> {k: v<span class="op">*</span>profit_per_car <span class="cf">for</span> k,v <span class="kw">in</span> extra.items()}</span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>,<span class="fl">3.9</span>))</span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> <span class="bu">list</span>(money.keys())<span class="op">;</span> vals <span class="op">=</span> [money[k] <span class="cf">for</span> k <span class="kw">in</span> labels]</span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(labels, vals, alpha<span class="op">=</span><span class="fl">0.9</span>)</span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Extra profit per month (USD)"</span>)</span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> b <span class="kw">in</span> bars:</span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>    h<span class="op">=</span>b.get_height()</span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>    ax.text(b.get_x()<span class="op">+</span>b.get_width()<span class="op">/</span><span class="dv">2</span>, h, <span class="ss">f"$</span><span class="sc">{</span>h<span class="sc">:,.0f}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="fu">### Long-Term Profit Projection (12 months)</span></span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-money-year</span></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Cumulative extra profit over 12 months"</span></span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> np.arange(<span class="dv">1</span>,<span class="dv">13</span>)</span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> [money[k] <span class="cf">for</span> k <span class="kw">in</span> labels]</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>,<span class="fl">3.9</span>))</span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lab, val <span class="kw">in</span> <span class="bu">zip</span>(labels, vals):</span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>    ax.plot(months, months<span class="op">*</span>val, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span>lab)</span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Month"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"Cumulative extra profit (USD)"</span>)</span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>ax.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)<span class="op">;</span> ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a><span class="fu">## Your Action Plan</span></span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>**Priority schedule (start next week):**</span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**2–3 days** in the **highest-boost** shop  </span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**2–3 days** in the **second-highest-boost** shop  </span>
-<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Occasional** check-ins elsewhere (including your brother’s shop)</span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>**What could go wrong &amp; mitigations:**</span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Small samples** in some shops → keep logging data; re-check quarterly.  </span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Seasonality** → include month/day-of-week in future models if patterns shift.  </span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Staff changes** → if a lower-boost shop hires new techs, reassess.</span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your presence matters — but **not equally everywhere**.  </span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Focusing on the **top two shops** adds the most cars (and dollars).  </span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **money charts** show large gains from a smarter weekly schedule.  </span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Re-run quarterly** and adjust as the data evolve.</span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+  </script>
 </div> <!-- /content -->
 
 

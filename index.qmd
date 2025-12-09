@@ -1,42 +1,43 @@
 ---
-title: "Patrick’s Auto Shop Productivity Report"
-subtitle: "Where Should You Spend Your Time?"
+title: "Patrick’s Auto Shops – Decision Brief"
+subtitle: "Using 250 days of data to design your weekly schedule"
 format:
   html:
-    theme:
-      light: [lux]
-      dark: [vapor]
     toc: true
-    toc-title: "On this page"
+    toc-title: "Report outline"
     toc-location: left
     toc-depth: 2
-    number-sections: false
+    number-sections: true
     code-fold: true
-    code-tools: true
     smooth-scroll: true
-    page-layout: full
     anchor-sections: true
-    title-block-banner: true
-    title-block-banner-color: "#0b1021"
-    css: custom_theme_v2.css
 execute:
   echo: false
   warning: false
   message: false
 ---
 
+# 1. Snapshot: What you should do
 
-## The Bottom Line
+Patrick, here is the short version your data supports:
 
-Patrick, here’s what your data tells us in plain language:
+- Your presence **helps some shops a lot more than others**.
+- A small set of shops get a **big, repeatable jump** when you show up.
+- Other shops tick along **almost the same** whether you are there or not.
 
-- Your presence **does not help every shop equally**.
-- Some shops show a **big, reliable jump** in cars fixed when you’re there.
-- Others run **nearly as well without you**.
+A simple, data-backed plan is:
 
-**Recommendation:** Focus your week on the **top two shops** by _Boss Boost_ (Present − Away). Your brother’s shop typically benefits **least** from your presence — visit occasionally, not routinely.
+- Spend **most of your week** in the **two shops where your presence adds the most cars per day**.
+- Visit the other shops (including your brother’s) **only for specific reasons**: training, big repairs, morale.
 
-***
+The rest of this brief explains:
+
+1. What the 250 days of data actually look like.
+2. How much you help each shop and how certain we are.
+3. What different schedules mean in **dollars per month**.
+4. A concrete weekly schedule you can follow.
+
+---
 
 ```{python}
 #| label: setup
@@ -45,357 +46,386 @@ Patrick, here’s what your data tells us in plain language:
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-from matplotlib.ticker import MaxNLocator
-from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 (imported for 3D)
+from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
 
 plt.style.use("default")
 
-# ---- Load & basic checks ----
+# Load data
 df = pd.read_csv("carsFixed.csv").copy()
 df["shopID"] = df["shopID"].astype(str)
 
-exp_cols = {"shopID", "boss", "carsFixed"}
-miss = exp_cols.difference(df.columns)
-if miss:
-    raise ValueError(f"Missing expected columns: {miss}")
+required = {"shopID", "boss", "carsFixed"}
+missing = required.difference(df.columns)
+if missing:
+    raise ValueError(f"Missing required columns: {missing}")
 
-# Map boss indicator to readable labels
+# Map boss indicator to labels
 uniq = sorted(df["boss"].unique())
-if set(uniq) == {0,1}:
-    boss_map = {0:"Away", 1:"Present"}
+if set(uniq) == {0, 1}:
+    boss_map = {0: "Away", 1: "Present"}
 else:
-    boss_map = {v:str(v) for v in uniq}
+    boss_map = {v: str(v) for v in uniq}
 df["bossLabel"] = df["boss"].map(boss_map)
 
-# Summary table and means
-summary = (df.groupby(["shopID","bossLabel"])["carsFixed"]
-             .agg(count="count", mean="mean", std="std", min="min", max="max")
-             .reset_index())
+# Summary by shop and presence
+summary = (
+    df.groupby(["shopID", "bossLabel"])["carsFixed"]
+      .agg(count="count", mean="mean", std="std", q25=lambda x: np.quantile(x, 0.25), q75=lambda x: np.quantile(x, 0.75))
+      .reset_index()
+)
 
-means = df.groupby(["shopID","bossLabel"])["carsFixed"].mean().unstack()
+# Means table
+means = df.groupby(["shopID", "bossLabel"])["carsFixed"].mean().unstack()
+
 if "Present" in means.columns and "Away" in means.columns:
     means["boss_boost"] = means["Present"] - means["Away"]
 else:
     means["boss_boost"] = np.nan
 
-boost_tbl = means.reset_index().sort_values("boss_boost", ascending=False)
+boost_tbl = means.sort_values("boss_boost", ascending=False).reset_index()
 
-# Bootstrap CIs per shop
-def _boot_shop(sub, n=2000):
-    if not (("Present" in sub["bossLabel"].values) and ("Away" in sub["bossLabel"].values)):
+# Bootstrap CIs for boss boost
+def bootstrap_boost(sub, n_boot=2000):
+    labels = sub["bossLabel"].unique()
+    if not (("Present" in labels) and ("Away" in labels)):
         return None
-    a = sub.loc[sub["bossLabel"]=="Away","carsFixed"].to_numpy()
-    p = sub.loc[sub["bossLabel"]=="Present","carsFixed"].to_numpy()
-    if len(a)==0 or len(p)==0: 
+    present = sub.loc[sub["bossLabel"] == "Present", "carsFixed"].to_numpy()
+    away    = sub.loc[sub["bossLabel"] == "Away", "carsFixed"].to_numpy()
+    if len(present) == 0 or len(away) == 0:
         return None
-    outs = []
-    for _ in range(n):
-        outs.append(np.random.choice(p, size=p.size, replace=True).mean()
-                    - np.random.choice(a, size=a.size, replace=True).mean())
-    outs = np.array(outs)
-    return outs.mean(), np.quantile(outs,0.025), np.quantile(outs,0.975)
+    diffs = []
+    for _ in range(n_boot):
+        diffs.append(
+            np.random.choice(present, size=len(present), replace=True).mean()
+            - np.random.choice(away,    size=len(away),    replace=True).mean()
+        )
+    diffs = np.array(diffs)
+    return diffs.mean(), np.quantile(diffs, 0.025), np.quantile(diffs, 0.975)
 
 rows = []
 for shop, sub in df.groupby("shopID"):
-    z = _boot_shop(sub)
-    if z is not None:
-        rows.append({"shopID": str(shop), "effect_mean": z[0], "ci_lower": z[1], "ci_upper": z[2]})
-ci = pd.DataFrame(rows) if rows else None
+    out = bootstrap_boost(sub)
+    if out is not None:
+        rows.append({"shopID": str(shop), "effect_mean": out[0], "ci_lower": out[1], "ci_upper": out[2]})
+ci_df = pd.DataFrame(rows) if rows else None
 ```
 
-## What the Data Shows
+# 2. What the data show
 
-We analyzed **250 shop-days** across 5 shops. Each point below is one day; horizontal tick marks show the mean for _Away_ vs _Present_.
+Each row in `carsFixed.csv` is one **shop-day**:
+
+- which shop it was,
+- whether you were **away** or **present**, and
+- how many cars were fixed.
 
 ```{python}
-#| label: fig-allpoints
-#| fig-cap: "All 250 days — one dot per day, by shop and boss presence"
-fig, ax = plt.subplots(figsize=(9,4.6))
+#| label: tbl-head
+#| tbl-cap: "First 10 days in the dataset"
+df.head(10)
+```
 
+```{python}
+#| label: tbl-summary
+#| tbl-cap: "Summary statistics by shop and boss presence"
+summary.round(2)
+```
+
+## 2.1 All 250 data points in one view
+
+This figure shows **every day** in the data (all 250 points), colored by your presence and arranged by shop.
+
+```{python}
+#| label: fig-all-points
+#| fig-cap: "All 250 days: one dot per day, colored by your presence"
 shops = sorted(df["shopID"].unique())
-xpos = {(shop,"Away"): i-0.13 for i,shop in enumerate(shops)}
-xpos.update({(shop,"Present"): i+0.13 for i,shop in enumerate(shops)})
+boss_levels = ["Away", "Present"]
 
-for (shop, status), sub in df.groupby(["shopID","bossLabel"]):
-    x = xpos[(shop,status)] + 0.045*(np.random.rand(len(sub)) - 0.5)
-    ax.scatter(x, sub["carsFixed"], s=22, alpha=0.55)
+fig, axes = plt.subplots(1, len(shops), figsize=(11, 4), sharey=True)
 
-# Mean ticks
-if "Present" in means.columns and "Away" in means.columns:
-    for i, shop in enumerate(shops):
-        row = means.loc[shop]
-        if not np.isnan(row.get("Away", np.nan)):
-            ax.hlines(row["Away"], i-0.33, i-0.05, linewidth=2)
-        if not np.isnan(row.get("Present", np.nan)):
-            ax.hlines(row["Present"], i+0.05, i+0.33, linewidth=2)
+if len(shops) == 1:
+    axes = [axes]
 
-ax.set_xticks(range(len(shops)))
-ax.set_xticklabels([f"Shop {s}" for s in shops])
-ax.set_ylabel("Cars fixed per day")
-ax.grid(axis="y", alpha=0.3)
-plt.tight_layout(); plt.show()
-```
+for ax, shop in zip(axes, shops):
+    sub = df[df["shopID"] == shop]
+    for j, bl in enumerate(boss_levels):
+        vals = sub.loc[sub["bossLabel"] == bl, "carsFixed"].to_numpy()
+        if len(vals) == 0:
+            continue
+        x_j = j + 1 + 0.12 * (np.random.rand(len(vals)) - 0.5)
+        ax.scatter(x_j, vals, alpha=0.6, s=20)
+    ax.set_xticks([1, 2])
+    ax.set_xticklabels(boss_levels)
+    ax.set_title(f"Shop {shop}")
+    ax.grid(axis="y", alpha=0.3)
 
-***
-
-## Distribution Comparison: Violin Plot
-
-Violin plots show the **full distribution** of productivity (not just the average).
-
-```{python}
-#| label: fig-violin
-#| fig-cap: "Productivity distributions by shop & presence"
-fig, axes = plt.subplots(1, len(shops), figsize=(11,4), sharey=True)
-for i, shop in enumerate(shops):
-    sub = df[df["shopID"]==shop]
-    data_away = sub.loc[sub["bossLabel"]=="Away","carsFixed"].to_numpy()
-    data_pres = sub.loc[sub["bossLabel"]=="Present","carsFixed"].to_numpy()
-    parts = axes[i].violinplot([data_away, data_pres], showmeans=True, showmedians=False, showextrema=False)
-    axes[i].set_title(f"Shop {shop}")
-    axes[i].set_xticks([1,2]); axes[i].set_xticklabels(["Away","Present"])
-    axes[i].yaxis.set_major_locator(MaxNLocator(integer=True))
-    axes[i].grid(axis="y", alpha=0.3)
 axes[0].set_ylabel("Cars fixed per day")
-plt.tight_layout(); plt.show()
+plt.tight_layout()
+plt.show()
 ```
 
-***
+## 2.2 Distribution comparison by shop (box + jitter, not violins)
 
-## Split Violin Plot: Direct Comparison by Shop
-
-Each shop’s two distributions plotted back-to-back for a **direct** comparison.
+Here we show the **spread** of productivity at each shop with and without you, using boxplots plus jittered points (no violin shapes).
 
 ```{python}
-#| label: fig-split-violin
-#| fig-cap: "Split-violin per shop (Away vs Present)"
-def half_violin(ax, data, pos, side="left", width=0.8):
-    vp = ax.violinplot([data], positions=[pos], widths=width, showmeans=False, showmedians=False, showextrema=False)
-    for b in vp['bodies']:
-        m = np.mean(b.get_paths()[0].vertices[:,0])
-        verts = b.get_paths()[0].vertices
-        if side=="left":
-            verts[:,0] = np.minimum(verts[:,0], m)
-        else:
-            verts[:,0] = np.maximum(verts[:,0], m)
-        b.set_alpha(0.6)
+#| label: fig-box-strip
+#| fig-cap: "Daily productivity by shop and presence: boxplots with individual days"
+shops = sorted(df["shopID"].unique())
+n_shops = len(shops)
 
-fig, ax = plt.subplots(figsize=(9,4.2))
-positions = np.arange(1, len(shops)+1)
-for i, shop in enumerate(shops, start=1):
-    sub = df[df["shopID"]==shop]
-    a = sub.loc[sub["bossLabel"]=="Away","carsFixed"].to_numpy()
-    p = sub.loc[sub["bossLabel"]=="Present","carsFixed"].to_numpy()
-    if len(a)>0:
-        half_violin(ax, a, i, side="left", width=0.8)
-    if len(p)>0:
-        half_violin(ax, p, i, side="right", width=0.8)
-    # Means (diamonds)
-    if "Away" in means.columns:
-        ma = means.loc[shop].get("Away", np.nan)
-        if not np.isnan(ma):
-            ax.scatter(i-0.05, ma, marker="D")
-    if "Present" in means.columns:
-        mp = means.loc[shop].get("Present", np.nan)
-        if not np.isnan(mp):
-            ax.scatter(i+0.05, mp, marker="D")
-ax.set_xticks(positions); ax.set_xticklabels([f"Shop {s}" for s in shops])
-ax.set_ylabel("Cars fixed per day")
-ax.grid(axis="y", alpha=0.3)
-plt.tight_layout(); plt.show()
+fig, axes = plt.subplots(1, n_shops, figsize=(11, 4), sharey=True)
+if n_shops == 1:
+    axes = [axes]
+
+for ax, shop in zip(axes, shops):
+    sub = df[df["shopID"] == shop]
+    away_vals = sub.loc[sub["bossLabel"] == "Away", "carsFixed"].to_numpy()
+    pres_vals = sub.loc[sub["bossLabel"] == "Present", "carsFixed"].to_numpy()
+    data = [away_vals, pres_vals]
+
+    # Boxplot
+    ax.boxplot(data, showmeans=True)
+
+    # Jittered points
+    for j, vals in enumerate(data, start=1):
+        if len(vals) == 0:
+            continue
+        x_j = j + 0.10 * (np.random.rand(len(vals)) - 0.5)
+        ax.scatter(x_j, vals, s=18, alpha=0.5)
+
+    ax.set_title(f"Shop {shop}")
+    ax.set_xticks([1, 2])
+    ax.set_xticklabels(["Away", "Present"])
+    ax.grid(axis="y", alpha=0.3)
+
+axes[0].set_ylabel("Cars fixed per day")
+plt.tight_layout()
+plt.show()
 ```
 
-***
+## 2.3 3D view: shop × presence × cars
 
-## 3D View: Shop Performance Landscape
-
-A 3D perspective combining shop, presence, and cars fixed.
+To give you a different angle on the same data, this 3D plot summarizes the **average cars per day** for each shop and presence combination.
 
 ```{python}
 #| label: fig-3d
-#| fig-cap: "3D: Shop × Presence × Cars"
-from mpl_toolkits.mplot3d import Axes3D  # noqa
-fig = plt.figure(figsize=(8.5,5.5))
-ax = fig.add_subplot(111, projection='3d')
+#| fig-cap: "3D view: average cars/day by shop and boss presence"
+shops = list(means.index)
+boss_cols = [c for c in means.columns if c in ["Away", "Present"]]
 
-status_to_x = {"Away":0, "Present":1}
-xs, ys, zs = [], [], []
-for _, r in df.iterrows():
-    xs.append(status_to_x.get(r["bossLabel"], 0))
-    ys.append(int(r["shopID"]))
-    zs.append(r["carsFixed"])
-ax.scatter(xs, ys, zs, s=10, alpha=0.6)
+fig = plt.figure(figsize=(7.5, 5))
+ax = fig.add_subplot(111, projection="3d")
 
-# Bars at means
-for shop in shops:
-    y = int(shop)
-    if "Away" in means.columns and not np.isnan(means.loc[shop].get("Away", np.nan)):
-        ax.bar3d(0, y-0.2, 0, 0.3, 0.4, means.loc[shop]["Away"], alpha=0.4)
-    if "Present" in means.columns and not np.isnan(means.loc[shop].get("Present", np.nan)):
-        ax.bar3d(1, y-0.2, 0, 0.3, 0.4, means.loc[shop]["Present"], alpha=0.4)
+xs = []
+ys = []
+zs = []
+labels = []
 
-ax.set_xlabel("Presence (0=Away, 1=Present)")
-ax.set_ylabel("Shop")
-ax.set_zlabel("Cars fixed")
-plt.tight_layout(); plt.show()
+for i, shop in enumerate(shops):
+    for j, bl in enumerate(boss_cols):
+        xs.append(i)
+        ys.append(j)
+        zs.append(means.loc[shop, bl])
+        labels.append((shop, bl))
+
+ax.bar3d(xs, ys, [0]*len(zs), 0.4, 0.4, zs, shade=True)
+ax.set_xticks(range(len(shops)))
+ax.set_xticklabels([f"Shop {s}" for s in shops])
+ax.set_yticks(range(len(boss_cols)))
+ax.set_yticklabels(boss_cols)
+ax.set_zlabel("Mean cars/day")
+ax.set_title("Average productivity in 3D (shop × presence)")
+plt.tight_layout()
+plt.show()
 ```
 
-***
+# 3. How much do you help each shop?
 
-## The “Boss Boost” Effect
+## 3.1 “Boss boost” table
 
-How many **extra cars** are fixed when you’re present?
+We define:
+
+> **Boss boost = mean cars/day when you are Present − mean cars/day when you are Away.**
 
 ```{python}
 #| label: tbl-boost
-#| tbl-cap: "Boss Boost = mean(present) − mean(away)"
-view = boost_tbl[["shopID"]].copy()
-view["Mean (Away)"] = means.get("Away", np.nan).reindex(boost_tbl["shopID"]).values
-view["Mean (Present)"] = means.get("Present", np.nan).reindex(boost_tbl["shopID"]).values
-view["Boss Boost (Δ cars/day)"] = boost_tbl["boss_boost"].values
-view.round(2)
+#| tbl-cap: "Shops ranked by extra cars/day when you are present"
+boost_view = boost_tbl[["shopID"]].copy()
+boost_view["Mean (Away)"] = means.get("Away", np.nan).reindex(boost_tbl["shopID"]).values
+boost_view["Mean (Present)"] = means.get("Present", np.nan).reindex(boost_tbl["shopID"]).values
+boost_view["Boss boost (Δ cars/day)"] = boost_tbl["boss_boost"].values
+boost_view.round(2)
 ```
+
+## 3.2 Boss boost as a horizontal bar chart (with CIs)
+
+This figure shows where your time **creates the most extra cars per day**, with uncertainty bars when we can estimate them.
 
 ```{python}
-#| label: fig-boost
-#| fig-cap: "Extra cars per day when you’re present (by shop)"
-fig, ax = plt.subplots(figsize=(7.2,3.9))
-bb = boost_tbl.fillna(0)
-ax.bar([f"Shop {s}" for s in bb["shopID"]], bb["boss_boost"], alpha=0.9)
-ax.axhline(0, linewidth=1)
-ax.set_ylabel("Δ cars/day")
-ax.grid(axis="y", alpha=0.3)
-for i, v in enumerate(bb["boss_boost"]):
-    ax.text(i, v, f"{v:.1f}", ha="center", va="bottom" if v>=0 else "top", fontsize=9)
-plt.tight_layout(); plt.show()
+#| label: fig-boost-bars
+#| fig-cap: "Extra cars/day when you are present, with uncertainty bars"
+fig, ax = plt.subplots(figsize=(7.2, 4.2))
+
+order = list(boost_tbl["shopID"])
+y_pos = np.arange(len(order))
+
+boost_vals = boost_tbl.set_index("shopID").loc[order, "boss_boost"].to_numpy()
+
+if ci_df is not None and not ci_df.empty:
+    aligned = ci_df.set_index("shopID").loc[order]
+    effects = aligned["effect_mean"].to_numpy()
+    lower = aligned["ci_lower"].to_numpy()
+    upper = aligned["ci_upper"].to_numpy()
+    ax.barh(y_pos, effects, xerr=[effects - lower, upper - effects],
+            alpha=0.85, capsize=4)
+else:
+    ax.barh(y_pos, boost_vals, alpha=0.85)
+
+ax.axvline(0, linestyle="--", linewidth=1, color="black")
+ax.set_yticks(y_pos)
+ax.set_yticklabels([f"Shop {s}" for s in order])
+ax.set_xlabel("Extra cars/day when present (Boss boost)")
+ax.set_title("Where your presence moves the needle most")
+ax.grid(axis="x", alpha=0.3)
+
+plt.tight_layout()
+plt.show()
 ```
 
-***
-
-## How Confident Can You Be?
+# 4. How confident can you be?
 
 ```{python}
 #| label: tbl-ci
-#| tbl-cap: "Bootstrap CIs for shop-level Boss Boost"
-ci.round(2) if ci is not None else pd.DataFrame({"Note": ["Insufficient variation to estimate CIs."]})
+#| tbl-cap: "Bootstrap confidence intervals for boss boost by shop"
+ci_df.round(2) if ci_df is not None and not ci_df.empty else pd.DataFrame(
+    {"Note": ["Not enough Present/Away variation in every shop to estimate intervals."]}
+)
 ```
 
-```{python}
-#| label: fig-ci
-#| fig-cap: "Effect ± confidence interval by shop"
-if ci is not None:
-    order = [s for s in boost_tbl["shopID"] if s in set(ci["shopID"])]
-    dat = ci.set_index("shopID").loc[order].reset_index()
-    fig, ax = plt.subplots(figsize=(7.2,3.9))
-    x = np.arange(len(dat))
-    y = dat["effect_mean"].to_numpy()
-    lo = dat["ci_lower"].to_numpy()
-    hi = dat["ci_upper"].to_numpy()
-    ax.errorbar(x, y, yerr=[y-lo, hi-y], fmt="o", capsize=4)
-    ax.axhline(0, linestyle="--", linewidth=1)
-    ax.set_xticks(x); ax.set_xticklabels([f"Shop {s}" for s in dat["shopID"]])
-    ax.set_ylabel("Boss Boost (cars/day)")
-    ax.grid(axis="y", alpha=0.3)
-    plt.tight_layout(); plt.show()
-else:
-    import matplotlib.pyplot as plt
-    fig, ax = plt.subplots()
-    ax.text(0.5, 0.5, "Not enough Present/Away variation for CIs.", ha="center", va="center")
-    ax.axis("off"); plt.tight_layout(); plt.show()
-```
+In plain language:
 
-***
+- If a shop’s entire interval is **above 0**, you almost certainly help there.
+- If an interval overlaps 0, the signal is weaker; that shop is lower priority until more data accumulate.
 
-## The Money Question
+# 5. What different schedules mean in money
 
-Assume **$200 profit per car**. Compare monthly strategies (22 working days):
+Assume:
+
+- **$200 profit per car**, and
+- **22 working days per month**.
+
+We compare three simple schedules:
+
+1. **Even split** – equal time at all shops.  
+2. **Focus top-2** – all your time at the two highest-boost shops.  
+3. **Brother-only** – all your time at your brother’s shop (shop 3 if it exists; otherwise the first shop).  
 
 ```{python}
-#| label: fig-money-month
-#| fig-cap: "Extra profit per month by strategy (illustrative)"
+#| label: fig-money
+#| fig-cap: "Extra profit per month vs a 'never visit' baseline"
 profit_per_car = 200.0
 workdays = 22
 shops = list(means.index)
 
-def expected_cars(plan):
-    tot = 0.0
-    for shop in shops:
-        days_present = plan.get(shop, 0.0)
+def expected_cars(plan_days_present):
+    total = 0.0
+    for s in shops:
+        days_present = plan_days_present.get(s, 0.0)
         days_away = workdays - days_present
-        row = means.loc[shop]
+        row = means.loc[s]
         mA = row.get("Away", row.mean())
         mP = row.get("Present", mA)
-        tot += days_present*mP + days_away*mA
-    return tot
+        total += days_present * mP + days_away * mA
+    return total
 
-# Strategies: Even, Optimal (top 2), Brother-only, Never
-even = {s: workdays/len(shops) for s in shops}
+# Baseline: never visit
+never = {s: 0.0 for s in shops}
+base_cars = expected_cars(never)
+
+# 1) Even split
+even = {s: workdays / len(shops) for s in shops}
+
+# 2) Focus top-2
 sorted_boost = boost_tbl.sort_values("boss_boost", ascending=False)
-top2 = list(sorted_boost["shopID"][:2]) if len(sorted_boost)>=2 else list(sorted_boost["shopID"])
-optimal = {s: 0.0 for s in shops}
-if len(top2)>0:
-    each = workdays/len(top2)
-    for s in top2: optimal[s] = each
+top2 = list(sorted_boost["shopID"][:2]) if len(sorted_boost) >= 2 else list(sorted_boost["shopID"])
+focus = {s: 0.0 for s in shops}
+if len(top2) > 0:
+    days_each = workdays / len(top2)
+    for s in top2:
+        focus[s] = days_each
+
+# 3) Brother-only
 fav = "3" if "3" in shops else shops[0]
-brother = {s:0.0 for s in shops}; brother[fav] = workdays
-never = {s:0.0 for s in shops}
+brother = {s: 0.0 for s in shops}
+brother[fav] = workdays
 
-base = expected_cars(never)
-extra = {
-    "Optimal (Top 2)": expected_cars(optimal)-base,
-    "Even Split": expected_cars(even)-base,
-    "Brother Only": expected_cars(brother)-base,
-}
-money = {k: v*profit_per_car for k,v in extra.items()}
+scenarios = {"Even split": even, "Focus top-2": focus, "Brother-only": brother}
 
-fig, ax = plt.subplots(figsize=(7.2,3.9))
-labels = list(money.keys()); vals = [money[k] for k in labels]
+extra_profit = {}
+for name, plan in scenarios.items():
+    cars = expected_cars(plan)
+    extra_cars = cars - base_cars
+    extra_profit[name] = extra_cars * profit_per_car
+
+labels = list(extra_profit.keys())
+vals = [extra_profit[k] for k in labels]
+
+fig, ax = plt.subplots(figsize=(7, 4))
 bars = ax.bar(labels, vals, alpha=0.9)
 ax.set_ylabel("Extra profit per month (USD)")
+ax.set_title("What different schedules mean in money")
 ax.grid(axis="y", alpha=0.3)
+
 for b in bars:
-    h=b.get_height()
-    ax.text(b.get_x()+b.get_width()/2, h, f"${h:,.0f}", ha="center", va="bottom", fontsize=9)
-plt.tight_layout(); plt.show()
+    h = b.get_height()
+    ax.text(b.get_x() + b.get_width()/2, h, f"${h:,.0f}", ha="center", va="bottom", fontsize=9)
+
+plt.tight_layout()
+plt.show()
 ```
 
-### Long-Term Profit Projection (12 months)
+## 5.1 12‑month projection
+
+Here we project the same three strategies over 12 months, assuming the pattern continues.
 
 ```{python}
-#| label: fig-money-year
-#| fig-cap: "Cumulative extra profit over 12 months"
-months = np.arange(1,13)
-vals = [money[k] for k in labels]
+#| label: fig-projection
+#| fig-cap: "Cumulative extra profit over 12 months for each strategy"
+months = np.arange(1, 13)
+fig, ax = plt.subplots(figsize=(7, 4))
 
-fig, ax = plt.subplots(figsize=(7.2,3.9))
-for lab, val in zip(labels, vals):
-    ax.plot(months, months*val, marker="o", label=lab)
-ax.set_xlabel("Month"); ax.set_ylabel("Cumulative extra profit (USD)")
-ax.grid(alpha=0.3); ax.legend(frameon=False)
-plt.tight_layout(); plt.show()
+for name in labels:
+    monthly = extra_profit[name]
+    cum_vals = months * monthly
+    ax.plot(months, cum_vals, marker="o", label=name)
+
+ax.set_xlabel("Months")
+ax.set_ylabel("Cumulative extra profit (USD)")
+ax.set_title("Long-term impact of different schedules")
+ax.grid(alpha=0.3)
+ax.legend(frameon=False)
+
+plt.tight_layout()
+plt.show()
 ```
 
-***
+# 6. Recommended weekly plan (pulling it together)
 
-## Your Action Plan
+Based on the boss-boost rankings and CIs:
 
-**Priority schedule (start next week):**
+- Spend **Monday–Wednesday** at the **highest-boost shop**.
+- Spend **Thursday–Friday** at the **second-highest-boost shop**.
+- Visit other shops, including your brother’s, **only when there is a clear reason** (new staff, big jobs, problems).
 
-- **2–3 days** in the **highest-boost** shop  
-- **2–3 days** in the **second-highest-boost** shop  
-- **Occasional** check-ins elsewhere (including your brother’s shop)
+Re-run this brief every few months:
 
-**What could go wrong & mitigations:**
+- If the ranking of shops changes, rotate your schedule.
+- Keep logging data so the recommendations stay current.
 
-1. **Small samples** in some shops → keep logging data; re-check quarterly.  
-2. **Seasonality** → include month/day-of-week in future models if patterns shift.  
-3. **Staff changes** → if a lower-boost shop hires new techs, reassess.
+# 7. Appendix — full summary table
 
-***
-
-## Summary
-
-- Your presence matters — but **not equally everywhere**.  
-- Focusing on the **top two shops** adds the most cars (and dollars).  
-- The **money charts** show large gains from a smarter weekly schedule.  
-- **Re-run quarterly** and adjust as the data evolve.
+```{python}
+#| label: tbl-summary-full
+#| tbl-cap: "Summary statistics used across the report"
+summary.round(2)
+```
