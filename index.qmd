@@ -3,27 +3,28 @@ title: "Patrick’s Auto Shop Productivity Report"
 subtitle: "Where Should You Spend Your Time?"
 format:
   html:
-
-  theme:
-    light: [cosmo]
-    dark: [slate]
-  toc: true
-  toc-location: left
-  toc-depth: 2
-  code-copy: true
-  code-tools: true
-  df-print: paged
-  anchor-sections: true
-  page-layout: article
-  css: custom_theme.css
+    theme:
+      light: [lux]
+      dark: [vapor]
     toc: true
+    toc-title: "On this page"
+    toc-location: left
+    toc-depth: 2
+    number-sections: false
     code-fold: true
+    code-tools: true
     smooth-scroll: true
+    page-layout: full
+    anchor-sections: true
+    title-block-banner: true
+    title-block-banner-color: "#0b1021"
+    css: custom_theme_v2.css
 execute:
   echo: false
   warning: false
   message: false
 ---
+
 
 ## The Bottom Line
 
