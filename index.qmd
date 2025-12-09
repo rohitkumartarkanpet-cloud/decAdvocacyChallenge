@@ -30,7 +30,10 @@ A simple, data-backed plan is:
 - Spend **most of your week** in the **two shops where your presence adds the most cars per day**.
 - Visit the other shops (including your brother’s) **only for specific reasons**: training, big repairs, morale.
 
+In your data, those top two shops are **Shop 4** and **Shop 2**: when you are present, they fix about **13** and **10** more cars per day than when you are away.
+
 The rest of this brief explains:
+
 
 1. What your daily data actually look like across shops.
 2. How much you help each shop and how certain we are.
@@ -318,9 +321,16 @@ In plain language:
 
 - If a shop’s entire interval is **above 0**, you almost certainly help there.
 - If an interval overlaps 0, the signal is weaker; that shop is lower priority until more data accumulate.
-- These intervals are based on only **250 days of data**, so the exact numbers may shift as you collect more history.
+- These intervals are based on only 250 days of data, so the exact numbers may shift as you collect more history.
+
+**What could change these numbers?**
+
+- A big shift in demand (seasonality, economy, new competitors).
+- Major staff changes or turnover in any shop.
+- Changes in pricing or in your profit per car.
 
 We are assuming that the next few months will look roughly like these 250 days and that the profit per car stays about the same. If those assumptions change (for example, new staff, price changes, or a big shift in demand), the boss boosts and profit projections will also change.
+
 
 # What different schedules mean in money
 
