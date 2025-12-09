@@ -456,5 +456,4 @@ Re-run this brief every few months:
 #| label: tbl-summary-full
 #| tbl-cap: "Summary statistics used across the report"
 summary.round(2)
-
 ```
