@@ -145,7 +145,7 @@ This figure shows **every recorded day** in the data, colored by your presence a
 shops = sorted(df["shopID"].unique())
 boss_levels = ["Away", "Present"]
 
-fig, axes = plt.subplots(1, len(shops), figsize=(9, 4), sharey=True)
+fig, axes = plt.subplots(1, len(shops), figsize=(6.5, 4), sharey=True)
 
 if len(shops) == 1:
     axes = [axes]
@@ -180,7 +180,7 @@ Here we show the **spread** of productivity at each shop with and without you, u
 shops = sorted(df["shopID"].unique())
 n_shops = len(shops)
 
-fig, axes = plt.subplots(1, n_shops, figsize=(9, 4), sharey=True)
+fig, axes = plt.subplots(1, n_shops, figsize=(6.5, 4), sharey=True)
 if n_shops == 1:
     axes = [axes]
 
@@ -222,7 +222,7 @@ To give you a different angle on the same data, this 3D plot summarizes the **av
 shops = list(means.index)
 boss_cols = [c for c in means.columns if c in ["Away", "Present"]]
 
-fig = plt.figure(figsize=(6.5, 4.5))
+fig = plt.figure(figsize=(5.5, 4))
 ax = fig.add_subplot(111, projection="3d")
 
 xs = []
