@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <h1 data-number="1"><span class="header-section-number">1</span> Snapshot: What you should do</h1>
 <p>Patrick, here is the short version your data supports:</p>
 <ul>
-<li>Your presence <strong>helps some shops a lot more than others</strong>.</li>
+<li>Your presence <strong>helps some shops more than others</strong>.</li>
 <li>A small set of shops get a <strong>big, repeatable jump</strong> when you show up.</li>
 <li>Other shops tick along <strong>almost the same</strong> whether you are there or not.</li>
 </ul>
@@ -381,7 +381,7 @@ Table&nbsp;2: Summary statistics by shop and boss presence
 <div id="fig-all-points" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-all-points-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-all-points-output-1.png" width="1087" height="388" class="figure-img">
+<img src="index_files/figure-html/fig-all-points-output-1.png" width="889" height="388" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-all-points-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: All days in the dataset: one dot per day, colored by your presence
@@ -399,7 +399,7 @@ Figure&nbsp;1: All days in the dataset: one dot per day, colored by your presenc
 <div id="fig-box-strip" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-box-strip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-box-strip-output-1.png" width="1090" height="388" class="figure-img">
+<img src="index_files/figure-html/fig-box-strip-output-1.png" width="890" height="388" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-box-strip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Daily productivity by shop and presence: boxplots with individual days
@@ -417,7 +417,7 @@ Figure&nbsp;2: Daily productivity by shop and presence: boxplots with individual
 <div id="fig-3d" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-3d-output-1.png" width="422" height="428" class="figure-img">
+<img src="index_files/figure-html/fig-3d-output-1.png" width="403" height="393" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: 3D view: average cars/day by shop and boss presence
@@ -514,7 +514,7 @@ Table&nbsp;3: Shops ranked by extra cars/day when you are present
 <img src="index_files/figure-html/fig-boost-bars-output-1.png" width="710" height="408" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boost-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Extra cars/day when you are present, with uncertainty bars
+Figure&nbsp;4: Estimated extra cars/day when you are present, with uncertainty bars
 </figcaption>
 </figure>
 </div>
@@ -549,37 +549,37 @@ Table&nbsp;4: Bootstrap confidence intervals for boss boost by shop
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>1</td>
-<td>6.95</td>
-<td>4.83</td>
-<td>9.02</td>
+<td>6.93</td>
+<td>4.85</td>
+<td>9.00</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>2</td>
-<td>10.07</td>
-<td>7.69</td>
-<td>12.38</td>
+<td>10.09</td>
+<td>7.60</td>
+<td>12.47</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>3</td>
-<td>2.96</td>
-<td>-0.01</td>
-<td>5.92</td>
+<td>2.93</td>
+<td>-0.15</td>
+<td>5.74</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>4</td>
-<td>12.83</td>
-<td>5.36</td>
-<td>20.78</td>
+<td>12.66</td>
+<td>5.07</td>
+<td>21.00</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>5</td>
-<td>8.18</td>
-<td>4.79</td>
-<td>11.60</td>
+<td>8.27</td>
+<td>4.80</td>
+<td>11.70</td>
 </tr>
 </tbody>
 </table>
@@ -594,7 +594,9 @@ Table&nbsp;4: Bootstrap confidence intervals for boss boost by shop
 <ul>
 <li>If a shop’s entire interval is <strong>above 0</strong>, you almost certainly help there.</li>
 <li>If an interval overlaps 0, the signal is weaker; that shop is lower priority until more data accumulate.</li>
+<li>These intervals are based on only <strong>250 days of data</strong>, so the exact numbers may shift as you collect more history.</li>
 </ul>
+<p>We are assuming that the next few months will look roughly like these 250 days and that the profit per car stays about the same. If those assumptions change (for example, new staff, price changes, or a big shift in demand), the boss boosts and profit projections will also change.</p>
 </section>
 <section id="what-different-schedules-mean-in-money" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> What different schedules mean in money</h1>

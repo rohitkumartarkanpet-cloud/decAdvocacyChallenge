@@ -21,7 +21,7 @@ execute:
 
 Patrick, here is the short version your data supports:
 
-- Your presence **helps some shops a lot more than others**.
+- Your presence **helps some shops more than others**.
 - A small set of shops get a **big, repeatable jump** when you show up.
 - Other shops tick along **almost the same** whether you are there or not.
 
@@ -141,10 +141,11 @@ This figure shows **every recorded day** in the data, colored by your presence a
 #| echo: false
 #| label: fig-all-points
 #| fig-cap: "All days in the dataset: one dot per day, colored by your presence"
+#| out-width: "100%"
 shops = sorted(df["shopID"].unique())
 boss_levels = ["Away", "Present"]
 
-fig, axes = plt.subplots(1, len(shops), figsize=(11, 4), sharey=True)
+fig, axes = plt.subplots(1, len(shops), figsize=(9, 4), sharey=True)
 
 if len(shops) == 1:
     axes = [axes]
@@ -175,10 +176,11 @@ Here we show the **spread** of productivity at each shop with and without you, u
 #| echo: false
 #| label: fig-box-strip
 #| fig-cap: "Daily productivity by shop and presence: boxplots with individual days"
+#| out-width: "100%"
 shops = sorted(df["shopID"].unique())
 n_shops = len(shops)
 
-fig, axes = plt.subplots(1, n_shops, figsize=(11, 4), sharey=True)
+fig, axes = plt.subplots(1, n_shops, figsize=(9, 4), sharey=True)
 if n_shops == 1:
     axes = [axes]
 
@@ -216,10 +218,11 @@ To give you a different angle on the same data, this 3D plot summarizes the **av
 #| echo: false
 #| label: fig-3d
 #| fig-cap: "3D view: average cars/day by shop and boss presence"
+#| out-width: "100%"
 shops = list(means.index)
 boss_cols = [c for c in means.columns if c in ["Away", "Present"]]
 
-fig = plt.figure(figsize=(7.5, 5))
+fig = plt.figure(figsize=(6.5, 4.5))
 ax = fig.add_subplot(111, projection="3d")
 
 xs = []
@@ -271,7 +274,7 @@ This figure shows where your time **creates the most extra cars per day**, with 
 ```{python}
 #| echo: false
 #| label: fig-boost-bars
-#| fig-cap: "Extra cars/day when you are present, with uncertainty bars"
+#| fig-cap: "Estimated extra cars/day when you are present, with uncertainty bars"
 fig, ax = plt.subplots(figsize=(7.2, 4.2))
 
 order = list(boost_tbl["shopID"])
@@ -315,6 +318,9 @@ In plain language:
 
 - If a shop’s entire interval is **above 0**, you almost certainly help there.
 - If an interval overlaps 0, the signal is weaker; that shop is lower priority until more data accumulate.
+- These intervals are based on only **250 days of data**, so the exact numbers may shift as you collect more history.
+
+We are assuming that the next few months will look roughly like these 250 days and that the profit per car stays about the same. If those assumptions change (for example, new staff, price changes, or a big shift in demand), the boss boosts and profit projections will also change.
 
 # What different schedules mean in money
 
