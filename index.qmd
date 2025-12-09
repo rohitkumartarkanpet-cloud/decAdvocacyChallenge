@@ -1,6 +1,6 @@
 ---
 title: "Patrick’s Auto Shops – Decision Brief"
-subtitle: "Using 250 days of data to design your weekly schedule"
+subtitle: "Using your daily shop data to design your weekly schedule"
 format:
   html:
     toc: true
@@ -17,7 +17,7 @@ execute:
   message: false
 ---
 
-# 1. Snapshot: What you should do
+# Snapshot: What you should do
 
 Patrick, here is the short version your data supports:
 
@@ -32,7 +32,7 @@ A simple, data-backed plan is:
 
 The rest of this brief explains:
 
-1. What the 250 days of data actually look like.
+1. What your daily data actually look like across shops.
 2. How much you help each shop and how certain we are.
 3. What different schedules mean in **dollars per month**.
 4. A concrete weekly schedule you can follow.
@@ -40,6 +40,7 @@ The rest of this brief explains:
 ---
 
 ```{python}
+#| echo: false
 #| label: setup
 #| include: false
 
@@ -110,7 +111,7 @@ for shop, sub in df.groupby("shopID"):
 ci_df = pd.DataFrame(rows) if rows else None
 ```
 
-# 2. What the data show
+# What the data show
 
 Each row in `carsFixed.csv` is one **shop-day**:
 
@@ -119,24 +120,27 @@ Each row in `carsFixed.csv` is one **shop-day**:
 - how many cars were fixed.
 
 ```{python}
+#| echo: false
 #| label: tbl-head
 #| tbl-cap: "First 10 days in the dataset"
 df.head(10)
 ```
 
 ```{python}
+#| echo: false
 #| label: tbl-summary
 #| tbl-cap: "Summary statistics by shop and boss presence"
 summary.round(2)
 ```
 
-## 2.1 All 250 data points in one view
+## All shop-days in one view
 
-This figure shows **every day** in the data (all 250 points), colored by your presence and arranged by shop.
+This figure shows **every recorded day** in the data, colored by your presence and arranged by shop.
 
 ```{python}
+#| echo: false
 #| label: fig-all-points
-#| fig-cap: "All 250 days: one dot per day, colored by your presence"
+#| fig-cap: "All days in the dataset: one dot per day, colored by your presence"
 shops = sorted(df["shopID"].unique())
 boss_levels = ["Away", "Present"]
 
@@ -163,11 +167,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-## 2.2 Distribution comparison by shop (box + jitter, not violins)
+## Distribution comparison by shop (box + jitter, not violins)
 
 Here we show the **spread** of productivity at each shop with and without you, using boxplots plus jittered points (no violin shapes).
 
 ```{python}
+#| echo: false
 #| label: fig-box-strip
 #| fig-cap: "Daily productivity by shop and presence: boxplots with individual days"
 shops = sorted(df["shopID"].unique())
@@ -203,11 +208,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-## 2.3 3D view: shop × presence × cars
+## 3D view: shop × presence × cars
 
 To give you a different angle on the same data, this 3D plot summarizes the **average cars per day** for each shop and presence combination.
 
 ```{python}
+#| echo: false
 #| label: fig-3d
 #| fig-cap: "3D view: average cars/day by shop and boss presence"
 shops = list(means.index)
@@ -239,15 +245,16 @@ plt.tight_layout()
 plt.show()
 ```
 
-# 3. How much do you help each shop?
+# How much do you help each shop?
 
-## 3.1 “Boss boost” table
+## “Boss boost” table
 
 We define:
 
 > **Boss boost = mean cars/day when you are Present − mean cars/day when you are Away.**
 
 ```{python}
+#| echo: false
 #| label: tbl-boost
 #| tbl-cap: "Shops ranked by extra cars/day when you are present"
 boost_view = boost_tbl[["shopID"]].copy()
@@ -257,11 +264,12 @@ boost_view["Boss boost (Δ cars/day)"] = boost_tbl["boss_boost"].values
 boost_view.round(2)
 ```
 
-## 3.2 Boss boost as a horizontal bar chart (with CIs)
+## Boss boost as a horizontal bar chart (with CIs)
 
 This figure shows where your time **creates the most extra cars per day**, with uncertainty bars when we can estimate them.
 
 ```{python}
+#| echo: false
 #| label: fig-boost-bars
 #| fig-cap: "Extra cars/day when you are present, with uncertainty bars"
 fig, ax = plt.subplots(figsize=(7.2, 4.2))
@@ -292,9 +300,10 @@ plt.tight_layout()
 plt.show()
 ```
 
-# 4. How confident can you be?
+# How confident can you be?
 
 ```{python}
+#| echo: false
 #| label: tbl-ci
 #| tbl-cap: "Bootstrap confidence intervals for boss boost by shop"
 ci_df.round(2) if ci_df is not None and not ci_df.empty else pd.DataFrame(
@@ -307,7 +316,7 @@ In plain language:
 - If a shop’s entire interval is **above 0**, you almost certainly help there.
 - If an interval overlaps 0, the signal is weaker; that shop is lower priority until more data accumulate.
 
-# 5. What different schedules mean in money
+# What different schedules mean in money
 
 Assume:
 
@@ -321,6 +330,7 @@ We compare three simple schedules:
 3. **Brother-only** – all your time at your brother’s shop (shop 3 if it exists; otherwise the first shop).  
 
 ```{python}
+#| echo: false
 #| label: fig-money
 #| fig-cap: "Extra profit per month vs a 'never visit' baseline"
 profit_per_car = 200.0
@@ -384,11 +394,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-## 5.1 12‑month projection
+## 12‑month projection
 
 Here we project the same three strategies over 12 months, assuming the pattern continues.
 
 ```{python}
+#| echo: false
 #| label: fig-projection
 #| fig-cap: "Cumulative extra profit over 12 months for each strategy"
 months = np.arange(1, 13)
@@ -409,12 +420,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-# 6. Recommended weekly plan (pulling it together)
+# Recommended weekly plan (pulling it together)
 
 Based on the boss-boost rankings and CIs:
 
-- Spend **Monday–Wednesday** at the **highest-boost shop**.
-- Spend **Thursday–Friday** at the **second-highest-boost shop**.
+- Spend **roughly half of your days** at the **highest‑boost shop**.
+- Spend the **other half** at the **second‑highest‑boost shop**. One simple pattern is **Mon–Wed** at the top shop and **Thu–Fri** at the second.
 - Visit other shops, including your brother’s, **only when there is a clear reason** (new staff, big jobs, problems).
 
 Re-run this brief every few months:
@@ -422,9 +433,10 @@ Re-run this brief every few months:
 - If the ranking of shops changes, rotate your schedule.
 - Keep logging data so the recommendations stay current.
 
-# 7. Appendix — full summary table
+# Appendix — full summary table
 
 ```{python}
+#| echo: false
 #| label: tbl-summary-full
 #| tbl-cap: "Summary statistics used across the report"
 summary.round(2)
